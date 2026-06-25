@@ -78,7 +78,7 @@ export async function GET(request: NextRequest) {
       }
 
       // Secondary tie-breaker: sort by ID
-      if (comparison === 0 && sortField !== "id") {
+      if (comparison === 0) {
         comparison = a.id < b.id ? -1 : a.id > b.id ? 1 : 0;
       }
 

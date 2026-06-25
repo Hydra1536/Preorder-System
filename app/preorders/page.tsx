@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { Suspense, useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import PreorderTable from "@/components/PreorderTable";
@@ -18,7 +18,7 @@ interface Preorder {
   createdAt: string;
 }
 
-export default function PreordersPage() {
+function PreordersContent() {
   const searchParams = useSearchParams();
   const [preorders, setPreorders] = useState<Preorder[]>([]);
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
@@ -188,5 +188,19 @@ export default function PreordersPage() {
         </>
       )}
     </div>
+  );
+}
+
+export default function PreordersPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex justify-center items-center py-12">
+          <div className="text-gray-500">Loading preorders...</div>
+        </div>
+      }
+    >
+      <PreordersContent />
+    </Suspense>
   );
 }
