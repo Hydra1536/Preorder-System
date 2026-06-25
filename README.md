@@ -39,6 +39,7 @@ A modern preorder management system built with Next.js 16, Prisma, and SQLite. T
 
 - Node.js 18.x or higher
 - npm or yarn package manager
+- rename .env.example file into .env
 - Docker Desktop or Docker Engine, if you want to run with Docker
 
 ### Setup Using Docker
