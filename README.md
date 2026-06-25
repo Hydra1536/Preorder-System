@@ -39,8 +39,45 @@ A modern preorder management system built with Next.js 16, Prisma, and SQLite. T
 
 - Node.js 18.x or higher
 - npm or yarn package manager
+- Docker Desktop or Docker Engine, if you want to run with Docker
 
-### Installation
+### Setup Using Docker
+
+Docker is the easiest way to run the production build locally. The container creates the SQLite schema automatically and seeds sample data when the database is empty.
+
+1. **Build the image**
+
+```bash
+docker build -t preorder-system .
+```
+
+2. **Run the container with a persistent database volume**
+
+```bash
+docker run --rm -p 3000:3000 -v preorder-data:/data preorder-system
+```
+
+3. **Open your browser**
+
+Navigate to `http://localhost:3000`.
+
+The app stores SQLite data at `/data/preorder.db` inside the container. The `preorder-data` Docker volume keeps that database between container restarts.
+
+4. **Optional: disable automatic sample seeding**
+
+```bash
+docker run --rm -p 3000:3000 -v preorder-data:/data -e SEED_DATABASE=false preorder-system
+```
+
+5. **Optional: reset Docker database data**
+
+Stop the container, then remove the Docker volume:
+
+```bash
+docker volume rm preorder-data
+```
+
+### Setup Without Docker
 
 1. **Clone the repository** (or download the project)
 
