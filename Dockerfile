@@ -30,6 +30,7 @@ ENV NODE_ENV=production
 ENV HOSTNAME=0.0.0.0
 ENV PORT=3000
 ENV DATABASE_URL=file:/data/preorder.db
+ENV SEED_DATABASE=true
 ENV HOME=/tmp
 
 RUN apt-get update \
